@@ -358,7 +358,7 @@ function Splash({onStart}){
         {/* ── Title ── */}
         <h1 style={{
           fontFamily:T.heading,
-          fontSize:"clamp(32px,4vw,52px)",
+          fontSize:"clamp(28px,3.5vw,44px)",
           fontWeight:800,
           color:"#0b1220",
           letterSpacing:"-0.03em",
@@ -508,15 +508,6 @@ function Splash({onStart}){
     </div>
   );
 }
-
-          Duurt slechts 3-4 minuten · Gratis · Geen account nodig
-        </p>
-
-      </div>
-    </div>
-  );
-}
-
 
 /* ─── QUESTION ───────────────────────────────────────────────────────── */
 function Question({q,answers,setAnswers,onNext,onBack,step,total}){
@@ -757,11 +748,11 @@ export default function App(){
         ::-webkit-scrollbar{width:4px}
         ::-webkit-scrollbar-thumb{background:#E1E1E1;border-radius:99px}
       `}</style>
-      <div style={{minHeight:"100vh",display:"flex",justifyContent:"center",alignItems:"center",background:screen==="splash"?"transparent":"#EEF2F7",padding:screen==="splash"?"0":"36px 16px"}}>
+      <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",background:screen==="splash"?"transparent":"#EEF2F7",padding:screen==="splash"?"0":"36px 16px"}}>
         {screen==="splash" ? (
           <Splash onStart={()=>setScreen("quiz")}/>
         ) : (
-          <div style={{width:"100%",maxWidth:560,padding:"0 16px"}}>
+          <div style={{width:"100%",maxWidth:560,margin:"0 auto",padding:"0 16px"}}>
             <div style={{background:C.white,borderRadius:20,padding:"36px 30px",boxShadow:"0 4px 40px rgba(0,0,0,0.07)"}}>
               {screen==="quiz"    && <Question q={QUESTIONS[step]} answers={answers} setAnswers={setAnswers} onNext={next} onBack={back} step={step} total={QUESTIONS.length}/>}
               {screen==="loading" && <Loading/>}
