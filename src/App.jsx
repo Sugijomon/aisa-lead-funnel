@@ -300,7 +300,7 @@ function Lbl({children,style={}}){
 /* ─── SPLASH ─────────────────────────────────────────────────────────── */
 /* v14: best s2c variant — gekleurde card glow, gradient icon bg, 16px body text */
 /* ─── SPLASH ─────────────────────────────────────────────────────────── */
-/* v17: ChatGPT-gecorrigeerde s2c variant — Manrope headings, grotere CTA, diepere shadows */
+/* v18: GPT v3 — verfijnde teksten, kleinere knop, betere lijnpositie */
 function Splash({onStart}){
   const cards=[
     {
@@ -308,27 +308,27 @@ function Splash({onStart}){
       iconBg:"linear-gradient(135deg,rgba(206,227,255,0.75) 0%,rgba(186,214,255,0.65) 100%)",
       iconColor:"#2f6aa7",
       label:"Diagnose",
-      sub:"Identificeer de AI-vaardigheden die jouw organisatie nodig heeft",
-      borderColor:"rgba(15,23,42,0.08)",
-      shadow:"0 18px 40px rgba(15,23,42,0.14)",
+      sub:"Breng in kaart waar jouw team staat op het gebied van AI-vaardigheden",
+      shadow:"0 18px 42px rgba(15,23,42,0.16)",
+      borderColor:"rgba(15,23,42,0.14)",
     },
     {
       Icon: Rocket,
       iconBg:"linear-gradient(135deg,rgba(206,227,255,0.75) 0%,rgba(186,214,255,0.65) 100%)",
       iconColor:"#2f6aa7",
       label:"Ontdek",
-      sub:"Implementeer AI-oplossingen die direct resultaat opleveren",
-      borderColor:"rgba(15,23,42,0.08)",
-      shadow:"0 18px 40px rgba(15,23,42,0.14)",
+      sub:"Verken welke AI-mogelijkheden direct inzetbaar zijn voor jouw team",
+      shadow:"0 18px 42px rgba(15,23,42,0.16)",
+      borderColor:"rgba(15,23,42,0.14)",
     },
     {
       Icon: BarChart3,
       iconBg:"linear-gradient(135deg,rgba(198,245,226,0.75) 0%,rgba(178,236,214,0.65) 100%)",
       iconColor:"#1f9f86",
       label:"Versnel",
-      sub:"Breid AI-investeringen uit voor langdurig succes",
-      borderColor:"rgba(31,159,134,0.20)",
-      shadow:"0 18px 40px rgba(15,23,42,0.14), 0 22px 55px rgba(31,159,134,0.20)",
+      sub:"Krijg een persoonlijk leeradvies om gericht te groeien",
+      shadow:"0 18px 42px rgba(15,23,42,0.16), 0 18px 46px rgba(31,159,134,0.18)",
+      borderColor:"rgba(15,23,42,0.14)",
     },
   ];
 
@@ -347,8 +347,8 @@ function Splash({onStart}){
     }}>
       <div style={{
         width:"100%",
-        maxWidth:1280,
-        padding:"60px 24px 70px",
+        maxWidth:1200,
+        padding:"60px 32px 70px",
         display:"flex",
         flexDirection:"column",
         alignItems:"center",
@@ -358,12 +358,12 @@ function Splash({onStart}){
         {/* ── Title ── */}
         <h1 style={{
           fontFamily:T.heading,
-          fontSize:"clamp(42px,6vw,72px)",
+          fontSize:"clamp(36px,5.5vw,64px)",
           fontWeight:800,
           color:"#0b1220",
           letterSpacing:"-0.03em",
           lineHeight:1.05,
-          margin:"0 0 12px 0",
+          margin:"0 0 14px 0",
         }}>
           AI Skills Accelerator
         </h1>
@@ -371,11 +371,12 @@ function Splash({onStart}){
         {/* ── Subtitle ── */}
         <p style={{
           fontFamily:T.body,
-          fontSize:22,
+          fontSize:"clamp(16px,1.8vw,20px)",
           fontWeight:500,
           color:"#0b1220",
-          opacity:0.85,
-          margin:"0 0 76px 0",
+          opacity:0.80,
+          margin:"0 0 64px 0",
+          maxWidth:680,
         }}>
           Ontdek welk AI-traject past bij jouw team én ontvang een persoonlijk advies op maat.
         </p>
@@ -387,7 +388,7 @@ function Splash({onStart}){
           display:"flex",
           alignItems:"center",
           justifyContent:"center",
-          marginBottom:66,
+          marginBottom:56,
         }}>
           {/* Connector line */}
           <div style={{
@@ -395,11 +396,11 @@ function Splash({onStart}){
             top:"54%",
             left:"50%",
             transform:"translate(-50%,-50%)",
-            width:"128%",
-            height:10,
+            width:"122%",
+            height:8,
             borderRadius:9999,
-            background:"linear-gradient(90deg,rgba(76,142,212,0.65) 0%,rgba(92,176,193,0.55) 55%,rgba(117,214,170,0.65) 100%)",
-            boxShadow:"0 10px 30px rgba(130,180,220,0.18)",
+            background:"linear-gradient(90deg,rgba(76,142,212,0.70) 0%,rgba(92,176,193,0.55) 55%,rgba(117,214,170,0.70) 100%)",
+            boxShadow:"0 10px 26px rgba(130,180,220,0.16)",
             zIndex:1,
           }}/>
 
@@ -409,13 +410,14 @@ function Splash({onStart}){
             zIndex:2,
             display:"flex",
             justifyContent:"center",
-            gap:54,
+            gap:48,
+            flexWrap:"wrap",
           }}>
             {cards.map(c=>(
               <div key={c.label} style={{
-                width:380,
-                padding:"44px 32px 34px",
-                borderRadius:22,
+                width:340,
+                padding:"36px 26px 28px",
+                borderRadius:20,
                 border:`1px solid ${c.borderColor}`,
                 boxShadow:c.shadow,
                 background:"#ffffff",
@@ -428,37 +430,38 @@ function Splash({onStart}){
               }}>
                 {/* Icon */}
                 <div style={{
-                  width:62,
-                  height:62,
+                  width:60,
+                  height:60,
                   borderRadius:16,
                   background:c.iconBg,
                   display:"flex",
                   alignItems:"center",
                   justifyContent:"center",
-                  marginBottom:24,
+                  marginBottom:20,
                   flexShrink:0,
                 }}>
-                  <c.Icon size={26} color={c.iconColor} strokeWidth={2}/>
+                  <c.Icon size={28} color={c.iconColor} strokeWidth={2}/>
                 </div>
                 {/* Label */}
                 <div style={{
                   fontFamily:T.heading,
-                  fontSize:30,
+                  fontSize:28,
                   fontWeight:800,
                   color:"#111827",
                   letterSpacing:"-0.01em",
-                  marginBottom:12,
+                  marginBottom:10,
                 }}>
                   {c.label}
                 </div>
                 {/* Description */}
                 <div style={{
                   fontFamily:T.body,
-                  fontSize:18,
+                  fontSize:16,
                   fontWeight:500,
                   color:"#111827",
-                  lineHeight:1.35,
-                  maxWidth:320,
+                  lineHeight:1.45,
+                  maxWidth:280,
+                  opacity:0.85,
                 }}>
                   {c.sub}
                 </div>
@@ -468,32 +471,44 @@ function Splash({onStart}){
         </div>
 
         {/* ── CTA Button ── */}
-        <button onClick={onStart} style={{
-          fontFamily:T.heading,
-          fontSize:"clamp(22px,3vw,40px)",
-          fontWeight:800,
-          color:"#ffffff",
-          background:"#2f6aa7",
-          border:"none",
-          borderRadius:22,
-          padding:"24px 92px",
-          cursor:"pointer",
-          boxShadow:"0 18px 40px rgba(47,106,167,0.35)",
-          marginBottom:28,
-          transition:"all 0.2s",
-          letterSpacing:"-0.01em",
-        }}>
+        <button
+          onClick={onStart}
+          onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow="0 22px 48px rgba(47,106,167,0.42)";}}
+          onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="0 14px 36px rgba(47,106,167,0.32)";}}
+          style={{
+            fontFamily:T.heading,
+            fontSize:"clamp(18px,2.5vw,28px)",
+            fontWeight:800,
+            color:"#ffffff",
+            background:"#2f6aa7",
+            border:"none",
+            borderRadius:18,
+            padding:"20px 72px",
+            cursor:"pointer",
+            boxShadow:"0 14px 36px rgba(47,106,167,0.32)",
+            marginBottom:24,
+            transition:"transform 140ms ease, box-shadow 140ms ease",
+            letterSpacing:"-0.01em",
+          }}>
           Start jouw assessment
         </button>
 
         {/* ── Footer note ── */}
         <p style={{
           fontFamily:T.body,
-          fontSize:18,
+          fontSize:16,
           fontWeight:500,
           color:"#5b6472",
-          opacity:0.85,
+          opacity:0.80,
         }}>
+          Duurt slechts 3-4 minuten · Gratis · Geen account nodig
+        </p>
+
+      </div>
+    </div>
+  );
+}
+
           Duurt slechts 3-4 minuten · Gratis · Geen account nodig
         </p>
 
@@ -742,11 +757,11 @@ export default function App(){
         ::-webkit-scrollbar{width:4px}
         ::-webkit-scrollbar-thumb{background:#E1E1E1;border-radius:99px}
       `}</style>
-      <div style={{minHeight:"100vh",display:"flex",justifyContent:"center",alignItems:screen==="splash"?"center":"flex-start",background:screen==="splash"?"transparent":"#EEF2F7",padding:screen==="splash"?"0":"36px 16px"}}>
+      <div style={{minHeight:"100vh",display:"flex",justifyContent:"center",alignItems:"center",background:screen==="splash"?"transparent":"#EEF2F7",padding:screen==="splash"?"0":"36px 16px"}}>
         {screen==="splash" ? (
           <Splash onStart={()=>setScreen("quiz")}/>
         ) : (
-          <div style={{width:"100%",maxWidth:600,padding:"0 16px"}}>
+          <div style={{width:"100%",maxWidth:560,padding:"0 16px"}}>
             <div style={{background:C.white,borderRadius:20,padding:"36px 30px",boxShadow:"0 4px 40px rgba(0,0,0,0.07)"}}>
               {screen==="quiz"    && <Question q={QUESTIONS[step]} answers={answers} setAnswers={setAnswers} onNext={next} onBack={back} step={step} total={QUESTIONS.length}/>}
               {screen==="loading" && <Loading/>}
