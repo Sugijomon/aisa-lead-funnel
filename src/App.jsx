@@ -358,7 +358,7 @@ function Splash({onStart}){
         {/* ── Title ── */}
         <h1 style={{
           fontFamily:T.heading,
-          fontSize:"clamp(36px,5.5vw,64px)",
+          fontSize:"clamp(32px,4vw,52px)",
           fontWeight:800,
           color:"#0b1220",
           letterSpacing:"-0.03em",
@@ -477,13 +477,13 @@ function Splash({onStart}){
           onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="0 14px 36px rgba(47,106,167,0.32)";}}
           style={{
             fontFamily:T.heading,
-            fontSize:"clamp(18px,2.5vw,28px)",
+            fontSize:"clamp(16px,1.8vw,22px)",
             fontWeight:800,
             color:"#ffffff",
             background:"#2f6aa7",
             border:"none",
             borderRadius:18,
-            padding:"20px 72px",
+            padding:"18px 56px",
             cursor:"pointer",
             boxShadow:"0 14px 36px rgba(47,106,167,0.32)",
             marginBottom:24,
