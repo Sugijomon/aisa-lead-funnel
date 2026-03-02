@@ -758,6 +758,19 @@ function Results({res,answers,onReset}){
 /* ─── APP ────────────────────────────────────────────────────────────── */
 export default function App(){
   const [screen,setScreen]=useState("splash");
+  useEffect(()=>{
+    if(screen==="splash"){
+      document.body.style.margin="0";
+      document.body.style.padding="0";
+      document.body.style.background="radial-gradient(ellipse 140% 60% at 50% 0%,rgba(200,225,255,0.55) 0%,rgba(255,255,255,0) 65%),linear-gradient(180deg,#f8fbff 0%,#f3f8ff 55%,#f4fbf8 100%)";
+      document.body.style.minHeight="100vh";
+      document.documentElement.style.margin="0";
+      document.documentElement.style.padding="0";
+    } else {
+      document.body.style.background="#EEF2F7";
+    }
+    return()=>{document.body.style.background="";};
+  },[screen]);
   const [step,setStep]=useState(0);
   const [answers,setAnswers]=useState({});
   const [results,setResults]=useState(null);
