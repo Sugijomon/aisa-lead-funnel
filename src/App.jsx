@@ -762,7 +762,7 @@ export default function App(){
     if(screen==="splash"){
       document.body.style.margin="0";
       document.body.style.padding="0";
-      document.body.style.background="linear-gradient(160deg,#e8f4fd 0%,#eef7ff 40%,#e8f5f0 100%)";
+      document.body.style.background="#eaf4fb";
       document.body.style.minHeight="100vh";
       document.documentElement.style.margin="0";
       document.documentElement.style.padding="0";
