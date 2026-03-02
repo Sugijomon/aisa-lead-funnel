@@ -379,7 +379,7 @@ function Splash({onStart}){
           maxWidth:"none",
           whiteSpace:"nowrap",
         }}>
-          Ontdek welk AI-traject past bij jouw team én ontvang een persoonlijk advies op maat.
+          Ontdek welk traject het beste bij jouw organisatie past
         </p>
 
         {/* ── Cards + connector ── */}
@@ -799,7 +799,7 @@ export default function App(){
         ::-webkit-scrollbar{width:4px}
         ::-webkit-scrollbar-thumb{background:#E1E1E1;border-radius:99px}
       `}</style>
-      <div style={{minHeight:"100vh",background:screen==="splash"?"transparent":"transparent",display:"flex",justifyContent:"center"}}>
+      <div style={{minHeight:"100vh",width:"100%",background:screen==="splash"?"transparent":"transparent",display:"flex",justifyContent:"center",overflow:"hidden"}}>
         {screen==="splash" ? (
           <Splash onStart={()=>setScreen("quiz")}/>
         ) : (
