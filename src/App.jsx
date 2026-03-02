@@ -358,7 +358,7 @@ function Splash({onStart}){
         {/* ── Title ── */}
         <h1 style={{
           fontFamily:T.heading,
-          fontSize:"clamp(28px,3.5vw,44px)",
+          fontSize:36,
           fontWeight:800,
           color:"#0b1220",
           letterSpacing:"-0.03em",
@@ -371,7 +371,7 @@ function Splash({onStart}){
         {/* ── Subtitle ── */}
         <p style={{
           fontFamily:T.body,
-          fontSize:"clamp(16px,1.8vw,20px)",
+          fontSize:17,
           fontWeight:500,
           color:"#0b1220",
           opacity:0.80,
@@ -410,13 +410,13 @@ function Splash({onStart}){
             zIndex:2,
             display:"flex",
             justifyContent:"center",
-            gap:48,
+            gap:28,
             flexWrap:"wrap",
           }}>
             {cards.map(c=>(
               <div key={c.label} style={{
-                width:340,
-                padding:"36px 26px 28px",
+                width:280,
+                padding:"28px 20px 22px",
                 borderRadius:20,
                 border:`1px solid ${c.borderColor}`,
                 boxShadow:c.shadow,
@@ -445,7 +445,7 @@ function Splash({onStart}){
                 {/* Label */}
                 <div style={{
                   fontFamily:T.heading,
-                  fontSize:28,
+                  fontSize:22,
                   fontWeight:800,
                   color:"#111827",
                   letterSpacing:"-0.01em",
@@ -477,13 +477,13 @@ function Splash({onStart}){
           onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="0 14px 36px rgba(47,106,167,0.32)";}}
           style={{
             fontFamily:T.heading,
-            fontSize:"clamp(16px,1.8vw,22px)",
+            fontSize:18,
             fontWeight:800,
             color:"#ffffff",
             background:"#2f6aa7",
             border:"none",
             borderRadius:18,
-            padding:"18px 56px",
+            padding:"14px 44px",
             cursor:"pointer",
             boxShadow:"0 14px 36px rgba(47,106,167,0.32)",
             marginBottom:24,
@@ -752,8 +752,8 @@ export default function App(){
         {screen==="splash" ? (
           <Splash onStart={()=>setScreen("quiz")}/>
         ) : (
-          <div style={{minHeight:"100vh",display:"flex",alignItems:"flex-start",justifyContent:"center",padding:"36px 16px"}}>
-          <div style={{width:"100%",maxWidth:560}}>
+          <div style={{padding:"36px 16px"}}>
+          <div style={{width:"100%",maxWidth:560,margin:"0 auto"}}>
             <div style={{background:C.white,borderRadius:20,padding:"36px 30px",boxShadow:"0 4px 40px rgba(0,0,0,0.07)"}}>
               {screen==="quiz"    && <Question q={QUESTIONS[step]} answers={answers} setAnswers={setAnswers} onNext={next} onBack={back} step={step} total={QUESTIONS.length}/>}
               {screen==="loading" && <Loading/>}
