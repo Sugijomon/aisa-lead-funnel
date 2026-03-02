@@ -561,29 +561,51 @@ function Loading(){
   );
 }
 
-/* ─── PROGRAM CARD ───────────────────────────────────────────────────── */
+/* ─── PROGRAM CARD v24 — SaaS stijl met ribbon ──────────────────────── */
 function ProgramCard({prog,highlight,formatLabel,formatSublabel}){
+  const [hovered,setHovered]=useState(false);
   const p=PROGRAMS[prog];
   const duurText=formatSublabel?`${formatLabel} · ${formatSublabel}`:"Op maat";
   return(
-    <div style={{background:C.white,border:highlight?`1.5px solid ${C.blue}`:`1.5px solid ${C.border}`,borderRadius:14,padding:"22px 20px",marginBottom:14,boxShadow:highlight?C.shadowMd:C.shadow,position:"relative",overflow:"hidden"}}>
-      {highlight&&<div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.blue},${C.magenta})`}}/>}
-      <div style={{display:"flex",alignItems:"flex-start",gap:14,marginBottom:18}}>
-        <div style={{width:48,height:48,borderRadius:12,background:p.gradient,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+    <div
+      onMouseEnter={()=>setHovered(true)}
+      onMouseLeave={()=>setHovered(false)}
+      style={{
+        background:highlight?"linear-gradient(to bottom,#ffffff,#fffdf8)":C.white,
+        border:highlight?"2px solid #c9a227":"1.5px solid "+C.border,
+        borderRadius:20,
+        padding:"24px 22px 20px",
+        marginBottom:16,
+        boxShadow:hovered?"0 12px 40px rgba(0,0,0,0.10)":highlight?"0 4px 20px rgba(201,162,39,0.15)":C.shadow,
+        position:"relative",
+        overflow:"hidden",
+        transition:"transform 0.2s ease, box-shadow 0.2s ease",
+        transform:hovered?"translateY(-2px)":"translateY(0)",
+      }}>
+      {/* Blue ribbon top-left for best match */}
+      {highlight&&(
+        <div style={{position:"absolute",top:0,left:0,width:68,height:68,background:`linear-gradient(135deg,${C.blue} 50%,transparent 50%)`,zIndex:1,pointerEvents:"none"}}>
+          <Star size={14} fill="#fff" color="#fff" style={{position:"absolute",top:8,left:8}}/>
+        </div>
+      )}
+      {/* Header row */}
+      <div style={{display:"flex",alignItems:"flex-start",gap:14,marginBottom:16,paddingLeft:highlight?24:0}}>
+        <div style={{width:48,height:48,borderRadius:12,background:p.gradient,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,boxShadow:"0 4px 12px rgba(0,0,0,0.12)"}}>
           <p.Icon size={22} color="#fff" strokeWidth={1.75}/>
         </div>
         <div style={{flex:1}}>
-          {highlight&&<div style={{display:"inline-flex",alignItems:"center",gap:5,fontSize:10,fontWeight:700,color:C.blue,fontFamily:T.body,textTransform:"uppercase",letterSpacing:"0.1em",marginBottom:6}}><Star size={10} fill={C.blue}/> Beste match</div>}
-          <div style={{fontFamily:T.heading,fontWeight:700,fontSize:16,color:C.heading,marginBottom:3}}>{p.name}</div>
+          {highlight&&<div style={{display:"inline-flex",alignItems:"center",gap:4,fontSize:10,fontWeight:800,color:C.blue,fontFamily:T.body,textTransform:"uppercase",letterSpacing:"0.12em",marginBottom:5}}><Star size={9} fill={C.blue}/> Beste match</div>}
+          <div style={{fontFamily:T.heading,fontWeight:800,fontSize:17,color:C.heading,marginBottom:3,letterSpacing:"-0.01em"}}>{p.name}</div>
           <div style={{fontFamily:T.body,fontSize:13,color:C.muted,lineHeight:1.5}}>{p.tagline}</div>
         </div>
       </div>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:16}}>
+      {/* Content grid */}
+      <div style={{display:"grid",gridTemplateColumns:"1.5fr 1fr",gap:16,marginBottom:16}}>
         <div>
           <Lbl>Inbegrepen</Lbl>
           {p.includes.map(it=>(
-            <div key={it} style={{display:"flex",gap:8,marginBottom:7,alignItems:"flex-start"}}>
-              <CheckCircle2 size={13} color={C.green} strokeWidth={2} style={{marginTop:2,flexShrink:0}}/>
+            <div key={it} style={{display:"flex",gap:8,marginBottom:6,alignItems:"flex-start"}}>
+              <CheckCircle2 size={13} color={C.green} strokeWidth={2.5} style={{marginTop:2,flexShrink:0}}/>
               <span style={{fontFamily:T.body,fontSize:12,color:C.body,lineHeight:1.45}}>{it}</span>
             </div>
           ))}
@@ -592,18 +614,25 @@ function ProgramCard({prog,highlight,formatLabel,formatSublabel}){
           <Lbl>Format</Lbl>
           <div style={{fontFamily:T.body,fontSize:13,fontWeight:700,color:C.heading,marginBottom:14}}>{duurText}</div>
           <Lbl>Ideaal voor</Lbl>
-          <div style={{fontFamily:T.body,fontSize:12,fontWeight:600,color:C.heading,lineHeight:1.45}}>{p.idealFor}</div>
+          <div style={{fontFamily:T.body,fontSize:12,fontWeight:700,color:C.heading,lineHeight:1.45}}>{p.idealFor}</div>
         </div>
       </div>
-      {/* Module pills only — no D5 phase legend */}
-      <div style={{display:"flex",flexWrap:"wrap",marginBottom:18}}>
+      {/* Module pills */}
+      <div style={{display:"flex",flexWrap:"wrap",marginBottom:18,gap:6}}>
         {p.modules.map(m=><ModulePill key={m} modId={m}/>)}
       </div>
+      {/* Buttons */}
       <div style={{display:"flex",gap:10}}>
-        <button style={{flex:2,padding:"11px 0",background:C.blue,border:"none",borderRadius:99,color:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:T.body,display:"flex",alignItems:"center",justifyContent:"center",gap:6}}>
+        <button
+          style={{flex:2,padding:"11px 0",background:C.blue,border:"none",borderRadius:99,color:"#fff",fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:T.body,display:"flex",alignItems:"center",justifyContent:"center",gap:6,boxShadow:"0 4px 14px rgba(0,161,218,0.30)",transition:"background 0.2s"}}
+          onMouseEnter={e=>e.currentTarget.style.background="#0089bb"}
+          onMouseLeave={e=>e.currentTarget.style.background=C.blue}>
           Meer informatie <ChevronRight size={14}/>
         </button>
-        <button style={{flex:1,padding:"11px 0",background:"transparent",border:`1.5px solid ${C.border}`,borderRadius:99,color:C.body,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:T.body}}>
+        <button
+          style={{flex:1,padding:"11px 0",background:"transparent",border:`1.5px solid ${C.blue}`,borderRadius:99,color:C.blue,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:T.body,transition:"all 0.2s"}}
+          onMouseEnter={e=>{e.currentTarget.style.background="#f0f9ff";}}
+          onMouseLeave={e=>{e.currentTarget.style.background="transparent";}}>
           Gesprek plannen
         </button>
       </div>
@@ -676,26 +705,26 @@ function Results({res,answers,onReset}){
   );
   return(
     <div style={{animation:"fadeUp 0.4s ease"}}>
-      <div style={{textAlign:"center",marginBottom:28}}>
-        <div style={{marginBottom:20}}><Logo size={30}/></div>
-        <div style={{width:48,height:48,borderRadius:"50%",background:`linear-gradient(135deg,${C.blue},${C.green})`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 18px",boxShadow:`0 4px 20px ${C.blue}30`}}>
-          <CheckCircle2 size={24} color="#fff" strokeWidth={1.75}/>
+      <div style={{textAlign:"center",marginBottom:24}}>
+        <div style={{marginBottom:16}}><Logo size={28}/></div>
+        <div style={{width:52,height:52,borderRadius:"50%",background:`linear-gradient(135deg,${C.blue},${C.green})`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 16px",boxShadow:`0 6px 24px ${C.blue}40`}}>
+          <CheckCircle2 size={26} color="#fff" strokeWidth={1.75}/>
         </div>
-        <h2 style={{fontFamily:T.heading,fontSize:"clamp(18px,4vw,24px)",fontWeight:800,color:C.heading,marginBottom:8,letterSpacing:"-0.01em"}}>Jouw Persoonlijk AI Advies</h2>
-        <p style={{fontFamily:T.body,fontSize:14,color:C.body,maxWidth:380,margin:"0 auto",lineHeight:1.65}}>Op basis van jouw antwoorden zijn dit de best passende AISA-trajecten voor jouw team.</p>
+        <h2 style={{fontFamily:T.heading,fontSize:22,fontWeight:800,color:C.heading,marginBottom:8,letterSpacing:"-0.02em"}}>Jouw Persoonlijk AI Advies</h2>
+        <p style={{fontFamily:T.body,fontSize:14,color:C.body,maxWidth:360,margin:"0 auto",lineHeight:1.65}}>Op basis van jouw antwoorden zijn dit de best passende AISA-trajecten voor jouw team.</p>
       </div>
-      <div style={{display:"flex",gap:8,marginBottom:26,flexWrap:"wrap"}}>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1.3fr",gap:10,marginBottom:28}}>
         {[
           {label:"AI-niveau",  val:res.matLabel,       color:C.blue,        Icon:Bot},
           {label:"Teamgrootte",val:res.teamSizeLabel,  color:C.blueGrey,    Icon:Users},
           {label:"Format",     val:`${res.formatLabel} · ${res.formatSublabel}`,color:res.formatColor,Icon:res.FormatIcon},
         ].map(c=>(
-          <div key={c.label} style={{background:C.white,border:`1.5px solid ${C.border}`,borderRadius:10,padding:"11px 14px",flex:"1 1 100px",boxShadow:C.shadow,borderTop:`2.5px solid ${c.color}`}}>
-            <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:4}}>
+          <div key={c.label} style={{background:C.white,border:`1px solid ${C.border}`,borderRadius:12,padding:"12px 14px",boxShadow:"0 2px 8px rgba(0,0,0,0.04)"}}>
+            <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:5}}>
               <c.Icon size={11} color={c.color} strokeWidth={2}/>
               <Lbl style={{marginBottom:0}}>{c.label}</Lbl>
             </div>
-            <div style={{fontFamily:T.body,fontSize:12,fontWeight:700,color:C.heading}}>{c.val}</div>
+            <div style={{fontFamily:T.body,fontSize:13,fontWeight:700,color:c.color}}>{c.val}</div>
           </div>
         ))}
       </div>
