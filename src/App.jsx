@@ -748,16 +748,18 @@ export default function App(){
         ::-webkit-scrollbar{width:4px}
         ::-webkit-scrollbar-thumb{background:#E1E1E1;border-radius:99px}
       `}</style>
-      <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",background:screen==="splash"?"transparent":"#EEF2F7",padding:screen==="splash"?"0":"36px 16px"}}>
+      <div style={{minHeight:"100vh",background:screen==="splash"?"transparent":"#EEF2F7"}}>
         {screen==="splash" ? (
           <Splash onStart={()=>setScreen("quiz")}/>
         ) : (
-          <div style={{width:"100%",maxWidth:560,margin:"0 auto",padding:"0 16px"}}>
+          <div style={{minHeight:"100vh",display:"flex",alignItems:"flex-start",justifyContent:"center",padding:"36px 16px"}}>
+          <div style={{width:"100%",maxWidth:560}}>
             <div style={{background:C.white,borderRadius:20,padding:"36px 30px",boxShadow:"0 4px 40px rgba(0,0,0,0.07)"}}>
               {screen==="quiz"    && <Question q={QUESTIONS[step]} answers={answers} setAnswers={setAnswers} onNext={next} onBack={back} step={step} total={QUESTIONS.length}/>}
               {screen==="loading" && <Loading/>}
               {screen==="results" && results && <Results res={results} answers={answers} onReset={reset}/>}
             </div>
+          </div>
           </div>
         )}
       </div>
