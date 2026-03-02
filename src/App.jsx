@@ -334,14 +334,11 @@ function Splash({onStart}){
 
   return(
     <div style={{
-      minHeight:"100vh",
+      width:"100%",
       display:"flex",
       flexDirection:"column",
       alignItems:"center",
       justifyContent:"center",
-      background:
-        "radial-gradient(1200px 600px at 50% 20%,rgba(220,235,255,0.35) 0%,rgba(255,255,255,0) 60%)," +
-        "linear-gradient(180deg,#f8fbff 0%,#f3f8ff 55%,#f4fbf8 100%)",
       fontFamily:T.body,
       animation:"fadeUp 0.45s ease",
     }}>
