@@ -360,7 +360,7 @@ function Splash({onStart}){
           fontFamily:T.heading,
           fontSize:28,
           fontWeight:800,
-          color:"#ffffff",
+          color:"#0b1220",
           letterSpacing:"-0.03em",
           lineHeight:1.05,
           margin:"0 0 14px 0",
@@ -373,8 +373,8 @@ function Splash({onStart}){
           fontFamily:T.body,
           fontSize:16,
           fontWeight:500,
-          color:"#ffffff",
-          opacity:0.90,
+          color:"#0b1220",
+          opacity:0.80,
           margin:"0 0 40px 0",
           maxWidth:"none",
           whiteSpace:"nowrap",
@@ -772,9 +772,9 @@ export default function App(){
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
         *{box-sizing:border-box;margin:0;padding:0}
-        html,body{margin:0!important;padding:0!important;width:100%;height:100%;overflow-x:hidden;}
+        html,body{margin:0;padding:0;width:100%;overflow-x:hidden;}
         body{font-family:'Inter',sans-serif;}
-        #root{width:100%;min-height:100vh;display:flex;flex-direction:column;}
+        #root{width:100%;min-height:100vh;}
         .results-bg{
           min-height:100vh;width:100%;
           background:radial-gradient(circle at center,#f0f7ff 0%,#e2e8f0 100%);
