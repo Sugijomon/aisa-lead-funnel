@@ -355,8 +355,8 @@ function Splash({onStart}){
         {/* ── Title ── */}
         <h1 style={{
           fontFamily:T.heading,
-          fontSize:28,
-          fontWeight:800,
+          fontSize:38,
+          fontWeight:900,
           color:"#0b1220",
           letterSpacing:"-0.03em",
           lineHeight:1.05,
@@ -414,7 +414,7 @@ function Splash({onStart}){
             {cards.map(c=>(
               <div key={c.label} style={{
                 width:280,
-                padding:"22px 18px 18px",
+                padding:"16px 18px 14px",
                 borderRadius:20,
                 border:`1px solid ${c.borderColor}`,
                 boxShadow:c.shadow,
@@ -438,7 +438,7 @@ function Splash({onStart}){
                   marginBottom:20,
                   flexShrink:0,
                 }}>
-                  <c.Icon size={28} color={c.iconColor} strokeWidth={2}/>
+                  <c.Icon size={36} color={c.iconColor} strokeWidth={2}/>
                 </div>
                 {/* Label */}
                 <div style={{
