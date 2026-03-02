@@ -358,7 +358,7 @@ function Splash({onStart}){
         {/* ── Title ── */}
         <h1 style={{
           fontFamily:T.heading,
-          fontSize:36,
+          fontSize:28,
           fontWeight:800,
           color:"#0b1220",
           letterSpacing:"-0.03em",
@@ -371,12 +371,13 @@ function Splash({onStart}){
         {/* ── Subtitle ── */}
         <p style={{
           fontFamily:T.body,
-          fontSize:17,
+          fontSize:16,
           fontWeight:500,
           color:"#0b1220",
           opacity:0.80,
-          margin:"0 0 64px 0",
-          maxWidth:680,
+          margin:"0 0 40px 0",
+          maxWidth:"none",
+          whiteSpace:"nowrap",
         }}>
           Ontdek welk AI-traject past bij jouw team én ontvang een persoonlijk advies op maat.
         </p>
@@ -388,7 +389,7 @@ function Splash({onStart}){
           display:"flex",
           alignItems:"center",
           justifyContent:"center",
-          marginBottom:56,
+          marginBottom:36,
         }}>
           {/* Connector line */}
           <div style={{
@@ -410,13 +411,13 @@ function Splash({onStart}){
             zIndex:2,
             display:"flex",
             justifyContent:"center",
-            gap:28,
+            gap:20,
             flexWrap:"wrap",
           }}>
             {cards.map(c=>(
               <div key={c.label} style={{
                 width:280,
-                padding:"28px 20px 22px",
+                padding:"22px 18px 18px",
                 borderRadius:20,
                 border:`1px solid ${c.borderColor}`,
                 boxShadow:c.shadow,
@@ -561,80 +562,84 @@ function Loading(){
   );
 }
 
-/* ─── PROGRAM CARD v24 — SaaS stijl met ribbon ──────────────────────── */
+/* ─── PROGRAM CARD v25 — Gemini gold-border SaaS ────────────────────── */
 function ProgramCard({prog,highlight,formatLabel,formatSublabel}){
-  const [hovered,setHovered]=useState(false);
   const p=PROGRAMS[prog];
   const duurText=formatSublabel?`${formatLabel} · ${formatSublabel}`:"Op maat";
   return(
     <div
-      onMouseEnter={()=>setHovered(true)}
-      onMouseLeave={()=>setHovered(false)}
+      className="traject-card-hover"
       style={{
-        background:highlight?"linear-gradient(to bottom,#ffffff,#fffdf8)":C.white,
-        border:highlight?"2px solid #c9a227":"1.5px solid "+C.border,
-        borderRadius:20,
-        padding:"24px 22px 20px",
-        marginBottom:16,
-        boxShadow:hovered?"0 12px 40px rgba(0,0,0,0.10)":highlight?"0 4px 20px rgba(201,162,39,0.15)":C.shadow,
         position:"relative",
-        overflow:"hidden",
-        transition:"transform 0.2s ease, box-shadow 0.2s ease",
-        transform:hovered?"translateY(-2px)":"translateY(0)",
+        padding: highlight?"2px":"0",
+        background: highlight?"linear-gradient(135deg,#d4af37 0%,#f1e5ac 50%,#d4af37 100%)":"transparent",
+        borderRadius:24,
+        marginBottom:20,
       }}>
-      {/* Blue ribbon top-left for best match */}
+      {/* Ribbon top-left */}
       {highlight&&(
-        <div style={{position:"absolute",top:0,left:0,width:68,height:68,background:`linear-gradient(135deg,${C.blue} 50%,transparent 50%)`,zIndex:1,pointerEvents:"none"}}>
-          <Star size={14} fill="#fff" color="#fff" style={{position:"absolute",top:8,left:8}}/>
+        <div style={{position:"absolute",top:0,left:0,width:64,height:64,background:"linear-gradient(135deg,#0369a1 50%,transparent 50%)",borderTopLeftRadius:24,zIndex:10,pointerEvents:"none",display:"flex",alignItems:"flex-start",justifyContent:"flex-start"}}>
+          <Star size={14} fill="#fff" color="#fff" style={{margin:"8px 0 0 8px"}}/>
         </div>
       )}
-      {/* Header row */}
-      <div style={{display:"flex",alignItems:"flex-start",gap:14,marginBottom:16,paddingLeft:highlight?24:0}}>
-        <div style={{width:48,height:48,borderRadius:12,background:p.gradient,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,boxShadow:"0 4px 12px rgba(0,0,0,0.12)"}}>
-          <p.Icon size={22} color="#fff" strokeWidth={1.75}/>
-        </div>
-        <div style={{flex:1}}>
-          {highlight&&<div style={{display:"inline-flex",alignItems:"center",gap:4,fontSize:10,fontWeight:800,color:C.blue,fontFamily:T.body,textTransform:"uppercase",letterSpacing:"0.12em",marginBottom:5}}><Star size={9} fill={C.blue}/> Beste match</div>}
-          <div style={{fontFamily:T.heading,fontWeight:800,fontSize:17,color:C.heading,marginBottom:3,letterSpacing:"-0.01em"}}>{p.name}</div>
-          <div style={{fontFamily:T.body,fontSize:13,color:C.muted,lineHeight:1.5}}>{p.tagline}</div>
-        </div>
-      </div>
-      {/* Content grid */}
-      <div style={{display:"grid",gridTemplateColumns:"1.5fr 1fr",gap:16,marginBottom:16}}>
-        <div>
-          <Lbl>Inbegrepen</Lbl>
-          {p.includes.map(it=>(
-            <div key={it} style={{display:"flex",gap:8,marginBottom:6,alignItems:"flex-start"}}>
-              <CheckCircle2 size={13} color={C.green} strokeWidth={2.5} style={{marginTop:2,flexShrink:0}}/>
-              <span style={{fontFamily:T.body,fontSize:12,color:C.body,lineHeight:1.45}}>{it}</span>
+      {/* Card inner */}
+      <div style={{
+        background:highlight?"linear-gradient(to bottom,#ffffff,#fffdf8)":C.white,
+        borderRadius:highlight?22:24,
+        border:highlight?"none":`1.5px solid ${C.border}`,
+        padding:"28px 24px 22px",
+        boxShadow:highlight?"none":"0 4px 12px rgba(0,0,0,0.05)",
+      }}>
+        {/* Header */}
+        <div style={{paddingLeft:highlight?20:0,marginBottom:16}}>
+          {highlight&&<div style={{display:"inline-flex",alignItems:"center",gap:4,fontSize:10,fontWeight:800,color:C.blue,fontFamily:T.body,textTransform:"uppercase",letterSpacing:"0.12em",marginBottom:6}}><Star size={9} fill={C.blue}/> Beste match</div>}
+          <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+            <div style={{width:46,height:46,borderRadius:12,background:p.gradient,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,boxShadow:"0 4px 12px rgba(0,0,0,0.15)"}}>
+              <p.Icon size={21} color="#fff" strokeWidth={1.75}/>
             </div>
-          ))}
+            <div>
+              <div style={{fontFamily:T.heading,fontWeight:800,fontSize:17,color:C.heading,letterSpacing:"-0.01em"}}>{p.name}</div>
+              <div style={{fontFamily:T.body,fontSize:12,color:C.muted,lineHeight:1.5,marginTop:2}}>{p.tagline}</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <Lbl>Format</Lbl>
-          <div style={{fontFamily:T.body,fontSize:13,fontWeight:700,color:C.heading,marginBottom:14}}>{duurText}</div>
-          <Lbl>Ideaal voor</Lbl>
-          <div style={{fontFamily:T.body,fontSize:12,fontWeight:700,color:C.heading,lineHeight:1.45}}>{p.idealFor}</div>
+        {/* Grid */}
+        <div style={{display:"grid",gridTemplateColumns:"1.5fr 1fr",gap:18,marginBottom:16}}>
+          <div>
+            <Lbl>Inbegrepen</Lbl>
+            {p.includes.map(it=>(
+              <div key={it} style={{display:"flex",gap:8,marginBottom:7,alignItems:"flex-start"}}>
+                <div style={{width:16,height:16,borderRadius:"50%",border:`1.5px solid ${C.green}`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:1}}>
+                  <Check size={9} color={C.green} strokeWidth={3}/>
+                </div>
+                <span style={{fontFamily:T.body,fontSize:12,color:C.body,lineHeight:1.45}}>{it}</span>
+              </div>
+            ))}
+          </div>
+          <div>
+            <Lbl>Format</Lbl>
+            <div style={{fontFamily:T.body,fontSize:13,fontWeight:700,color:C.heading,marginBottom:14}}>{duurText}</div>
+            <Lbl>Ideaal voor</Lbl>
+            <div style={{fontFamily:T.body,fontSize:12,fontWeight:700,color:C.heading,lineHeight:1.45}}>{p.idealFor}</div>
+          </div>
         </div>
-      </div>
-      {/* Module pills */}
-      <div style={{display:"flex",flexWrap:"wrap",marginBottom:18,gap:6}}>
-        {p.modules.map(m=><ModulePill key={m} modId={m}/>)}
-      </div>
-      {/* Buttons */}
-      <div style={{display:"flex",gap:10}}>
-        <button
-          style={{flex:2,padding:"11px 0",background:C.blue,border:"none",borderRadius:99,color:"#fff",fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:T.body,display:"flex",alignItems:"center",justifyContent:"center",gap:6,boxShadow:"0 4px 14px rgba(0,161,218,0.30)",transition:"background 0.2s"}}
-          onMouseEnter={e=>e.currentTarget.style.background="#0089bb"}
-          onMouseLeave={e=>e.currentTarget.style.background=C.blue}>
-          Meer informatie <ChevronRight size={14}/>
-        </button>
-        <button
-          style={{flex:1,padding:"11px 0",background:"transparent",border:`1.5px solid ${C.blue}`,borderRadius:99,color:C.blue,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:T.body,transition:"all 0.2s"}}
-          onMouseEnter={e=>{e.currentTarget.style.background="#f0f9ff";}}
-          onMouseLeave={e=>{e.currentTarget.style.background="transparent";}}>
-          Gesprek plannen
-        </button>
+        {/* Pills */}
+        <div style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:18}}>
+          {p.modules.map(m=><ModulePill key={m} modId={m}/>)}
+        </div>
+        {/* Buttons */}
+        <div style={{display:"flex",gap:10}}>
+          <button
+            className="btn-main-hover"
+            style={{flex:2,padding:"12px 0",background:C.blue,border:"none",borderRadius:99,color:"#fff",fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:T.body,display:"flex",alignItems:"center",justifyContent:"center",gap:6,boxShadow:"0 4px 14px rgba(0,161,218,0.30)"}}>
+            Meer informatie <ChevronRight size={14}/>
+          </button>
+          <button
+            className="btn-sec-hover"
+            style={{flex:1,padding:"12px 0",background:"transparent",border:`1.5px solid ${C.blue}`,borderRadius:99,color:C.blue,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:T.body}}>
+            Gesprek plannen
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -704,7 +709,7 @@ function Results({res,answers,onReset}){
     </div>
   );
   return(
-    <div style={{animation:"fadeUp 0.4s ease"}}>
+    <div style={{animation:"fadeUp 0.4s ease",background:C.white,borderRadius:32,padding:"32px 28px",boxShadow:"0 25px 50px rgba(0,0,0,0.08)",width:"100%"}}>
       <div style={{textAlign:"center",marginBottom:24}}>
         <div style={{marginBottom:16}}><Logo size={28}/></div>
         <div style={{width:52,height:52,borderRadius:"50%",background:`linear-gradient(135deg,${C.blue},${C.green})`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 16px",boxShadow:`0 6px 24px ${C.blue}40`}}>
@@ -743,7 +748,7 @@ function Results({res,answers,onReset}){
           </button>
         </div>
       </div>
-      <button onClick={onReset} style={{marginTop:14,width:"100%",padding:"10px",background:"transparent",border:`1px solid ${C.border}`,borderRadius:99,color:C.muted,fontSize:12,cursor:"pointer",fontFamily:T.body,fontWeight:600,display:"flex",alignItems:"center",justifyContent:"center",gap:6}}>
+      <button onClick={onReset} className="reset-hover" style={{marginTop:14,width:"100%",padding:"10px",background:"transparent",border:`1px solid ${C.border}`,borderRadius:99,color:C.muted,fontSize:12,cursor:"pointer",fontFamily:T.body,fontWeight:600,display:"flex",alignItems:"center",justifyContent:"center",gap:6}}>
         <RotateCcw size={12}/> Opnieuw beginnen
       </button>
     </div>
@@ -767,8 +772,24 @@ export default function App(){
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
         *{box-sizing:border-box;margin:0;padding:0}
-        body{background:#EEF2F7;font-family:'Inter',sans-serif;}
-        #root{width:100%;}
+        html,body{margin:0;padding:0;width:100%;overflow-x:hidden;}
+        body{font-family:'Inter',sans-serif;}
+        #root{width:100%;min-height:100vh;}
+        .results-bg{
+          min-height:100vh;width:100%;
+          background:radial-gradient(circle at center,#f0f7ff 0%,#e2e8f0 100%);
+          background-attachment:fixed;
+          display:flex;justify-content:center;align-items:flex-start;
+          padding:32px 16px;box-sizing:border-box;
+        }
+        .traject-card-hover{transition:transform 0.2s ease,box-shadow 0.2s ease;}
+        .traject-card-hover:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.10)!important;}
+        .btn-main-hover{transition:background 0.2s ease;}
+        .btn-main-hover:hover{background:#0056b3!important;transform:translateY(-1px);}
+        .btn-sec-hover{transition:all 0.2s ease;}
+        .btn-sec-hover:hover{background:#f0f7ff!important;}
+        .reset-hover{transition:all 0.2s ease;}
+        .reset-hover:hover{background:#edf2f7!important;color:#2d3748!important;}
         @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
         @keyframes spin{to{transform:rotate(360deg)}}
         button{transition:all 0.18s}
@@ -778,12 +799,12 @@ export default function App(){
         ::-webkit-scrollbar{width:4px}
         ::-webkit-scrollbar-thumb{background:#E1E1E1;border-radius:99px}
       `}</style>
-      <div style={{minHeight:"100vh",background:screen==="splash"?"transparent":"#EEF2F7",display:"flex",justifyContent:"center"}}>
+      <div style={{minHeight:"100vh",background:screen==="splash"?"transparent":"transparent",display:"flex",justifyContent:"center"}}>
         {screen==="splash" ? (
           <Splash onStart={()=>setScreen("quiz")}/>
         ) : (
-          <div style={{width:"100%",maxWidth:560,padding:"36px 16px",boxSizing:"border-box",alignSelf:"flex-start"}}>
-          <div>
+          <div className={screen==="results"?"results-bg":""} style={{width:"100%",maxWidth:screen==="results"?700:560,padding:screen==="results"?"32px 16px":"36px 16px",boxSizing:"border-box",alignSelf:"flex-start",background:screen==="results"?"transparent":"#EEF2F7",display:screen==="results"?"flex":"block",justifyContent:screen==="results"?"center":"initial"}}>
+          <div style={{width:"100%",maxWidth:screen==="results"?620:undefined}}>
             <div style={{background:C.white,borderRadius:20,padding:"36px 30px",boxShadow:"0 4px 40px rgba(0,0,0,0.07)"}}>
               {screen==="quiz"    && <Question q={QUESTIONS[step]} answers={answers} setAnswers={setAnswers} onNext={next} onBack={back} step={step} total={QUESTIONS.length}/>}
               {screen==="loading" && <Loading/>}
