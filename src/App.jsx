@@ -739,6 +739,7 @@ export default function App(){
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
         *{box-sizing:border-box;margin:0;padding:0}
         body{background:#EEF2F7;font-family:'Inter',sans-serif;}
+        #root{width:100%;}
         @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
         @keyframes spin{to{transform:rotate(360deg)}}
         button{transition:all 0.18s}
@@ -748,12 +749,12 @@ export default function App(){
         ::-webkit-scrollbar{width:4px}
         ::-webkit-scrollbar-thumb{background:#E1E1E1;border-radius:99px}
       `}</style>
-      <div style={{minHeight:"100vh",background:screen==="splash"?"transparent":"#EEF2F7"}}>
+      <div style={{minHeight:"100vh",background:screen==="splash"?"transparent":"#EEF2F7",display:"flex",justifyContent:"center"}}>
         {screen==="splash" ? (
           <Splash onStart={()=>setScreen("quiz")}/>
         ) : (
-          <div style={{padding:"36px 16px"}}>
-          <div style={{width:"100%",maxWidth:560,margin:"0 auto"}}>
+          <div style={{width:"100%",maxWidth:560,padding:"36px 16px",boxSizing:"border-box",alignSelf:"flex-start"}}>
+          <div>
             <div style={{background:C.white,borderRadius:20,padding:"36px 30px",boxShadow:"0 4px 40px rgba(0,0,0,0.07)"}}>
               {screen==="quiz"    && <Question q={QUESTIONS[step]} answers={answers} setAnswers={setAnswers} onNext={next} onBack={back} step={step} total={QUESTIONS.length}/>}
               {screen==="loading" && <Loading/>}
